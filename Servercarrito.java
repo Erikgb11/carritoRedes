@@ -15,9 +15,9 @@ import java.util.*;
  */
 public class Servercarrito {
     public static void main(String[] args) {
-        producto camisa=new producto("camisa",172.0,"Una camisa chida chida",10);
-        producto pantalon=new producto("pantalon",150.0,"Para toda ocasion",10);
-        producto sueter=new producto("sueter",250.0,"Para el frio",10);
+        producto camisa=new producto("camisa",172,"Una camisa chida chida",10);
+        producto pantalon=new producto("pantalon",150,"Para toda ocasion",10);
+        producto sueter=new producto("sueter",250,"Para el frio",10);
         camisa.imprimir();
         pantalon.imprimir();
         sueter.imprimir();
@@ -28,11 +28,11 @@ public class Servercarrito {
         lista.add(pantalon);
         
         try {
-            ObjectOutputStream salida=new ObjectOutputStream(new FileOutputStream("cliente.txt"));
+            ObjectOutputStream salida=new ObjectOutputStream(new FileOutputStream("src\\main\\java\\com\\ipn\\mx\\practica1aplicaciones\\catalogo.txt"));
             System.out.println(salida);
             salida.writeObject(lista);
             salida.close();
-            ObjectInputStream entrada=new ObjectInputStream(new FileInputStream("cliente.txt"));
+            ObjectInputStream entrada=new ObjectInputStream(new FileInputStream("src\\main\\java\\com\\ipn\\mx\\practica1aplicaciones\\catalogo.txt"));
             lista2=(ArrayList <producto>)entrada.readObject();
         } catch (Exception e) {
             e.printStackTrace();

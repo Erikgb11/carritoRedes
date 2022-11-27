@@ -18,8 +18,11 @@ public class producto implements Serializable{
 	private String descripcion;
 	private int existencia;
 
-    producto(String string, double d, String string0, int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public producto(String string, float d, String string0, int i) {
+        nombre=string;
+        precio=d;
+        descripcion=string0;
+        existencia=i;
     }
     public void imprimir(){
         System.out.println(getNombre()+getPrecio()+getDescripcion()+getExistencia());
