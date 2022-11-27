@@ -8,32 +8,37 @@ package com.ipn.mx.practica1aplicaciones;
 import java.io.*;
 import java.net.*;
 import javax.swing.*;
+import java.util.*;
 /**
  *
  * @author erikg
  */
 public class Servercarrito {
     public static void main(String[] args) {
+        producto camisa=new producto("camisa",172.0,"Una camisa chida chida",10);
+        producto pantalon=new producto("pantalon",150.0,"Para toda ocasion",10);
+        producto sueter=new producto("sueter",250.0,"Para el frio",10);
+        camisa.imprimir();
+        pantalon.imprimir();
+        sueter.imprimir();
+        ArrayList <producto> lista=new ArrayList <producto>();
+        ArrayList <producto> lista2;
+        lista.add(camisa);
+        lista.add(sueter);
+        lista.add(pantalon);
+        
         try {
             ObjectOutputStream salida=new ObjectOutputStream(new FileOutputStream("cliente.txt"));
             System.out.println(salida);
-            salida.writeObject(producto);
+            salida.writeObject(lista);
             salida.close();
             ObjectInputStream entrada=new ObjectInputStream(new FileInputStream("cliente.txt"));
-            carrito=(Carro)entrada.readObject();
-            System.out.println(carrito.getColor());
-            System.out.println(carrito.getPlaca());
-            System.out.println(carrito.getMarca());
-            System.out.println(carrito.getAño());
-            System.out.println(carrito.getNpuertas());
-            System.out.println(carrito.getPrecio());
-            
-            
+            lista2=(ArrayList <producto>)entrada.readObject();
         } catch (Exception e) {
             e.printStackTrace();
         }
         try {
-            ServerSocket s = new ServerSocket(3014);
+            ServerSocket s = new ServerSocket(7000);
             for(;;){
                 Socket cl = s.accept();
                 System.out.println("Conexión establecida desde"+cl.getInetAddress()+":"+cl.getPort());
