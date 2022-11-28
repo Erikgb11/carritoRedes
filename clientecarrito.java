@@ -8,6 +8,7 @@ package com.ipn.mx.practica1aplicaciones;
 import javax.swing.*;
 import java.net.*;
 import java.io.*;
+import java.util.*;
 /**
  *
  * @author erikg
@@ -21,10 +22,22 @@ public class clientecarrito {
             System.out.printf("\n\n Escriba el puerto:\n");
             int pto= Integer.parseInt(br.readLine());
             Socket cl = new Socket(host, pto);
+            System.out.println("\n\nHola este es el catalogo\n:");
             DataInputStream dis= new DataInputStream(cl.getInputStream());
             byte[] b = new byte[1024];
             String nombre = dis.readUTF();
             System.out.println("Recibimos el archivo:"+nombre);
+            System.out.println("\nminimo llego aqui 1\n");
+            ObjectInputStream entrada=new ObjectInputStream(new FileInputStream(nombre));
+            System.out.println("\nminimo llego aqui 2\n");
+            ArrayList <producto> lista2;
+            System.out.println("\nminimo llego aqui 3\n");
+            lista2=(ArrayList <producto>)entrada.readObject();
+            System.out.println("\nminimo llego aqui 4\n");
+            for(int i=0;i<lista2.size();i++){
+                lista2.get(i).imprimir();
+            }
+            entrada.close();
             long tam= dis.readLong();
             DataOutputStream dos = new DataOutputStream(new FileOutputStream(nombre));
             long recibidos=0;
