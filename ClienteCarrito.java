@@ -13,7 +13,7 @@ import java.util.*;
  *
  * @author erikg
  */
-public class clientecarrito {
+public class ClienteCarrito {
     public static void main(String[] args) {
         try {
             BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
@@ -29,9 +29,9 @@ public class clientecarrito {
             boolean salir = false;
             int opcion; //Guardaremos la opcion del usuario
             while(!salir){
-                System.out.println("1. Agregar producto");
-                System.out.println("2. Eliminar producto");
-                System.out.println("3. Modificar producto");
+                System.out.println("1. Agregar Producto");
+                System.out.println("2. Eliminar Producto");
+                System.out.println("3. Modificar Producto");
                 System.out.println("4. Salir");
                 System.out.println("Escribe una de las opciones");
                 opcion = sn.nextInt();
@@ -64,8 +64,8 @@ public class clientecarrito {
             String nombre = dis.readUTF();
             System.out.println("Recibimos el archivo:"+nombre);
             ObjectInputStream entrada=new ObjectInputStream(new FileInputStream(nombre));
-            ArrayList <producto> lista2;
-            lista2=(ArrayList <producto>)entrada.readObject();
+            ArrayList <Producto> lista2;
+            lista2=(ArrayList <Producto>)entrada.readObject();
             for(int i=0;i<lista2.size();i++){
                 lista2.get(i).imprimir();
             }

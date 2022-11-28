@@ -12,13 +12,13 @@ import java.io.*;
  *
  * @author erikg
  */
-public class producto implements Serializable{
+public class Producto implements Serializable{
 	private String nombre;
 	private float precio;
 	private String descripcion;
 	private int existencia;
 
-    public producto(String string, float d, String string0, int i) {
+    public Producto(String string, float d, String string0, int i) {
         nombre=string;
         precio=d;
         descripcion=string0;
@@ -88,7 +88,7 @@ public class producto implements Serializable{
         if(existencia>=0){
             existencia=existencia-1;
         }else{
-            System.out.println("No se puede comprar este producto");
+            System.out.println("No se puede comprar este Producto");
         }    
     }
 }
