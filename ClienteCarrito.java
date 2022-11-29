@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ipn.mx.practica1aplicaciones;
+// package com.ipn.mx.practica1aplicaciones;
 
 import java.net.*;
 import java.io.*;
@@ -14,7 +14,6 @@ import java.util.*;
  * @author erikg
  */
 public class ClienteCarrito {
-
     public static void main(String[] args) {
         Producto camisa=new Producto("camisa",172,"Una camisa chida chida",10);
         Producto pantalon=new Producto("pantalon",150,"Para toda ocasion",10);
@@ -102,36 +101,70 @@ public class ClienteCarrito {
                     //Aqui pues te dice que no sea pendejo 
                 }
             }
-            //Aqui acaba el menu jsjs
-            //Aqui recibe pero pues xd no jala
-            DataInputStream dis = new DataInputStream(cl.getInputStream());
-            byte[] b = new byte[1024];
-            String nombre = dis.readUTF();
-            System.out.println("Recibimos el archivo:" + nombre);
-            ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(nombre));
-            //ArrayList <Producto> lista2;
-            lista2 = (ArrayList<Producto>) entrada.readObject();
+            break;
+            
+          case 3:
+            System.out.println("\nIngrese el nombre del producto a modificar:\n");
+            String nombrem = br.readLine();
             for (int i = 0; i < lista2.size(); i++) {
-                lista2.get(i).imprimir();
+              if (nombrem.equals(lista2.get(i).getNombre())) {
+                System.out.println("\nQue desea modificar:\n");
+              }
             }
-            entrada.close();
-            long tam = dis.readLong();
-            DataOutputStream dos = new DataOutputStream(new FileOutputStream(nombre));
-            long recibidos = 0;
-            int n, porcentaje;
-            while (recibidos < tam) {
-                n = dis.read(b);
-                dos.write(b, 0, n);
-                dos.flush();
-                recibidos = recibidos + n;
-                porcentaje = (int) (recibidos * 100 / tam);
-                System.out.print("\n\n Archivo recibido.");
-            }//While
-            dos.close();
-            dis.close();
-            cl.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+            break;
+
+            case 4:
+              System.out.println("\nIngrese el nombre del producto a comprar:\n");
+              String nombrec = br.readLine();
+              for (int i = 0; i < lista2.size(); i++) {
+                if (nombrec.equals(lista2.get(i).getNombre())) {
+                  lista2.get(i).disminuirstock();
+                }
+              }
+              break;
+
+            case 5:
+              salir = true;
+              //pues aqui se sale no sea pendejo
+              break;
+
+            default:
+              System.out.println("Solo números entre 1 y 4");
+              //Aqui pues te dice que no sea pendejo 
         }
+      }
+      //Aqui acaba el menu jsjs
+      //Aqui recibe pero pues xd no jala
+      DataInputStream dis = new DataInputStream(cl.getInputStream());
+      byte[] b = new byte[1024];
+      String nombre = dis.readUTF();
+      System.out.println("Recibimos el archivo:" + nombre);
+      long tam = dis.readLong();
+      DataOutputStream dos = new DataOutputStream(new FileOutputStream(nombre));
+
+      long recibidos = 0;
+      int n, porcentaje;
+
+      while (recibidos < tam){
+        n = dis.read(b);
+        dos.write(b, 0, n);
+        dos.flush();
+        recibidos = recibidos + n;
+        porcentaje = (int)(recibidos*100/tam);
+        System.out.println("Archivo recibido");
+      }
+      // ObjectInputStream entrada=new ObjectInputStream(new FileInputStream(nombre));
+      // ArrayList<Producto> lista2 = new ArrayList<Producto>();
+      // lista2 = (ArrayList<Producto>) entrada.readObject();
+      // for(int i=0;i<lista2.size();i++){
+      //     lista2.get(i).imprimir();
+      // }
+      // entrada.close();
+      dos.close();
+      dis.close();
+      cl.close();
+    }catch (Exception e) {
+      e.printStackTrace();
     }
+  }
 }
