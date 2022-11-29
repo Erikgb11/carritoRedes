@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ipn.mx.practica1aplicaciones;
+// package com.ipn.mx.practica1aplicaciones;
 
 import javax.swing.*;
 import java.net.*;
@@ -64,8 +64,8 @@ public class ClienteCarrito {
             String nombre = dis.readUTF();
             System.out.println("Recibimos el archivo:"+nombre);
             ObjectInputStream entrada=new ObjectInputStream(new FileInputStream(nombre));
-            ArrayList <Producto> lista2;
-            lista2=(ArrayList <Producto>)entrada.readObject();
+            List<Producto> lista2 = new ArrayList<Producto>();
+            lista2 = (List<Producto>) entrada.readObject();
             for(int i=0;i<lista2.size();i++){
                 lista2.get(i).imprimir();
             }
