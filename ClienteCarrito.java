@@ -22,13 +22,8 @@ public class ClienteCarrito {
             System.out.printf("\n\n Escriba el puerto:\n");
             int pto= Integer.parseInt(br.readLine());
             Socket cl = new Socket(host, pto);
-            //ArrayList <producto> lista2; //csmbiar
-            ArrayList <producto> lista2=new ArrayList <producto>();
             System.out.println("\n\nHola este es el catalogo\n:");
             
-<<<<<<< HEAD:clientecarrito.java
-
-=======
             //Aqui puse el menu pues porque xd no
             Scanner sn = new Scanner(System.in);
             boolean salir = false;
@@ -62,7 +57,6 @@ public class ClienteCarrito {
                         //Aqui pues te dice que no sea pendejo 
                 }
             }
->>>>>>> 8286f8d195603426ea65e8a8176718da8cf30607:ClienteCarrito.java
             //Aqui acaba el menu jsjs
             //Aqui recibe pero pues xd no jala
             DataInputStream dis= new DataInputStream(cl.getInputStream());
@@ -70,12 +64,8 @@ public class ClienteCarrito {
             String nombre = dis.readUTF();
             System.out.println("Recibimos el archivo:"+nombre);
             ObjectInputStream entrada=new ObjectInputStream(new FileInputStream(nombre));
-<<<<<<< HEAD:clientecarrito.java
-            lista2=(ArrayList <producto>)entrada.readObject();
-=======
             ArrayList <Producto> lista2;
             lista2=(ArrayList <Producto>)entrada.readObject();
->>>>>>> 8286f8d195603426ea65e8a8176718da8cf30607:ClienteCarrito.java
             for(int i=0;i<lista2.size();i++){
                 lista2.get(i).imprimir();
             }
