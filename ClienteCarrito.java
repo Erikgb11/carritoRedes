@@ -13,7 +13,7 @@ import java.util.*;
  *
  * @author erikg
  */
-public class clientecarrito {
+public class ClienteCarrito {
     public static void main(String[] args) {
         try {
             BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
@@ -26,7 +26,43 @@ public class clientecarrito {
             ArrayList <producto> lista2=new ArrayList <producto>();
             System.out.println("\n\nHola este es el catalogo\n:");
             
+<<<<<<< HEAD:clientecarrito.java
 
+=======
+            //Aqui puse el menu pues porque xd no
+            Scanner sn = new Scanner(System.in);
+            boolean salir = false;
+            int opcion; //Guardaremos la opcion del usuario
+            while(!salir){
+                System.out.println("1. Agregar Producto");
+                System.out.println("2. Eliminar Producto");
+                System.out.println("3. Modificar Producto");
+                System.out.println("4. Salir");
+                System.out.println("Escribe una de las opciones");
+                opcion = sn.nextInt();
+                switch(opcion){
+                    case 1:
+                        System.out.println("Has seleccionado la opcion 1");
+                        //Aqui pues va lo de agregar xd
+                        break;
+                    case 2:
+                        System.out.println("Has seleccionado la opcion 2");
+                        //Aqui va lo de eliminar xd
+                        break;
+                    case 3:
+                        System.out.println("Has seleccionado la opcion 3");
+                        //Aqui va lo de modificar xd
+                        break;
+                    case 4:
+                        salir=true;
+                        //pues aqui se sale no sea pendejo
+                        break;
+                    default:
+                        System.out.println("Solo números entre 1 y 4");
+                        //Aqui pues te dice que no sea pendejo 
+                }
+            }
+>>>>>>> 8286f8d195603426ea65e8a8176718da8cf30607:ClienteCarrito.java
             //Aqui acaba el menu jsjs
             //Aqui recibe pero pues xd no jala
             DataInputStream dis= new DataInputStream(cl.getInputStream());
@@ -34,7 +70,12 @@ public class clientecarrito {
             String nombre = dis.readUTF();
             System.out.println("Recibimos el archivo:"+nombre);
             ObjectInputStream entrada=new ObjectInputStream(new FileInputStream(nombre));
+<<<<<<< HEAD:clientecarrito.java
             lista2=(ArrayList <producto>)entrada.readObject();
+=======
+            ArrayList <Producto> lista2;
+            lista2=(ArrayList <Producto>)entrada.readObject();
+>>>>>>> 8286f8d195603426ea65e8a8176718da8cf30607:ClienteCarrito.java
             for(int i=0;i<lista2.size();i++){
                 lista2.get(i).imprimir();
             }

@@ -13,16 +13,16 @@ import java.util.*;
  *
  * @author erikg
  */
-public class Servercarrito {
+public class ServerCarrito {
     public static void main(String[] args) {
-//        producto camisa=new producto("camisa",172,"Una camisa chida chida",10);
-//        producto pantalon=new producto("pantalon",150,"Para toda ocasion",10);
-//        producto sueter=new producto("sueter",250,"Para el frio",10);
+//        Producto camisa=new Producto("camisa",172,"Una camisa chida chida",10);
+//        Producto pantalon=new Producto("pantalon",150,"Para toda ocasion",10);
+//        Producto sueter=new Producto("sueter",250,"Para el frio",10);
 //        camisa.imprimir();
 //        pantalon.imprimir();
 //        sueter.imprimir();
-//        ArrayList <producto> lista=new ArrayList <producto>();
-//        ArrayList <producto> lista2;
+//        ArrayList <Producto> lista=new ArrayList <Producto>();
+//        ArrayList <Producto> lista2;
 //        lista.add(camisa);
 //        lista.add(sueter);
 //        lista.add(pantalon);
@@ -33,7 +33,7 @@ public class Servercarrito {
 //            salida.writeObject(lista);
 //            salida.close();
 //            ObjectInputStream entrada=new ObjectInputStream(new FileInputStream("src\\main\\java\\com\\ipn\\mx\\practica1aplicaciones\\catalogo.txt"));
-//            lista2=(ArrayList <producto>)entrada.readObject();
+//            lista2=(ArrayList <Producto>)entrada.readObject();
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
