@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-// package com.ipn.mx.practica1aplicaciones;
+package com.ipn.mx.practica1aplicaciones;
 
 import javax.swing.*;
 import java.net.*;
@@ -17,12 +17,12 @@ public class ClienteCarrito {
     public static void main(String[] args) {
         try {
             BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
-            System.out.printf("\nEscriba la dirección del servidor:\n");
+            System.out.printf("Escriba la dirección del servidor:\n");
             String host = br.readLine();
-            System.out.printf("\n\n Escriba el puerto:\n");
+            System.out.printf("Escriba el puerto:\n");
             int pto= Integer.parseInt(br.readLine());
             Socket cl = new Socket(host, pto);
-            System.out.println("\n\nHola este es el catalogo\n:");
+            System.out.println("Hola este es el catalogo\n:");
             
             //Aqui puse el menu pues porque xd no
             Scanner sn = new Scanner(System.in);
@@ -59,29 +59,31 @@ public class ClienteCarrito {
             }
             //Aqui acaba el menu jsjs
             //Aqui recibe pero pues xd no jala
-            DataInputStream dis= new DataInputStream(cl.getInputStream());
+            DataInputStream dis = new DataInputStream(cl.getInputStream());
             byte[] b = new byte[1024];
             String nombre = dis.readUTF();
-            System.out.println("Recibimos el archivo:"+nombre);
-            ObjectInputStream entrada=new ObjectInputStream(new FileInputStream(nombre));
-            List<Producto> lista2 = new ArrayList<Producto>();
-            lista2 = (List<Producto>) entrada.readObject();
-            for(int i=0;i<lista2.size();i++){
-                lista2.get(i).imprimir();
-            }
-            entrada.close();
-            long tam= dis.readLong();
+            System.out.println("Recibimos el archivo:" + nombre);
+            long tam = dis.readLong();
             DataOutputStream dos = new DataOutputStream(new FileOutputStream(nombre));
-            long recibidos=0;
+
+            long recibidos = 0;
             int n, porcentaje;
-            while(recibidos < tam){
-                n = dis.read(b);
-                dos.write(b,0,n);
-                dos.flush();
-                recibidos = recibidos + n;
-                porcentaje = (int)(recibidos*100/tam);
-                System.out.print("\n\n Archivo recibido.");
-            }//While
+
+            while (recibidos < tam){
+              n = dis.read(b);
+              dos.write(b, 0, n);
+              dos.flush();
+              recibidos = recibidos + n;
+              porcentaje = (int)(recibidos*100/tam);
+              System.out.println("Archivo recibido");
+            }
+            // ObjectInputStream entrada=new ObjectInputStream(new FileInputStream(nombre));
+            // ArrayList<Producto> lista2 = new ArrayList<Producto>();
+            // lista2 = (ArrayList<Producto>) entrada.readObject();
+            // for(int i=0;i<lista2.size();i++){
+            //     lista2.get(i).imprimir();
+            // }
+            // entrada.close();
             dos.close();
             dis.close();
             cl.close();
