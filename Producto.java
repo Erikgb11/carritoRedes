@@ -88,9 +88,9 @@ public class Producto implements Serializable {
         this.existencia = existencia;
     }
 
-    public void disminuirstock() {
+    public void disminuirstock(int cantidad) {
         if (existencia >= 0) {
-            existencia = existencia - 1;
+            existencia = existencia - cantidad;
         } else {
             System.out.println("No se puede comprar este Producto");
         }
