@@ -4,28 +4,29 @@
  * and open the template in the editor.
  */
 package com.ipn.mx.practica1aplicaciones;
-import javax.swing.*;
-import java.net.*;
-import java.util.*;
+
 import java.io.*;
+
 /**
  *
  * @author erikg
  */
-public class Producto implements Serializable{
-	private String nombre;
-	private float precio;
-	private String descripcion;
-	private int existencia;
+public class Producto implements Serializable {
+
+    private String nombre;  
+    private float precio;
+    private String descripcion;
+    private int existencia;
 
     public Producto(String string, float d, String string0, int i) {
-        nombre=string;
-        precio=d;
-        descripcion=string0;
-        existencia=i;
+        nombre = string;
+        precio = d;
+        descripcion = string0;
+        existencia = i;
     }
-    public void imprimir(){
-        System.out.println(getNombre()+getPrecio()+getDescripcion()+getExistencia());
+
+    public void imprimir() {
+        System.out.println(getNombre() + getPrecio() + getDescripcion() + getExistencia());
     }
 
     /**
@@ -83,14 +84,13 @@ public class Producto implements Serializable{
     public void setExistencia(int existencia) {
         this.existencia = existencia;
     }
-    
-    public void disminuirstock(){
-        if(existencia>=0){
-            existencia=existencia-1;
-        }else{
-            System.out.println("No se puede comprar este Producto");
-        }    
-    }
-    
-}
 
+    public void disminuirstock() {
+        if (existencia >= 0) {
+            existencia = existencia - 1;
+        } else {
+            System.out.println("No se puede comprar este Producto");
+        }
+    }
+
+}

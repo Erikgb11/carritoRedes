@@ -8,12 +8,13 @@ package com.ipn.mx.practica1aplicaciones;
 import java.io.*;
 import java.net.*;
 import javax.swing.*;
-import java.util.*;
+
 /**
  *
  * @author erikg
  */
 public class ServerCarrito {
+
     public static void main(String[] args) {
 //        Producto camisa=new Producto("camisa",172,"Una camisa chida chida",10);
 //        Producto pantalon=new Producto("pantalon",150,"Para toda ocasion",10);
@@ -39,45 +40,45 @@ public class ServerCarrito {
 //        }
 
 //todo lo que esta comentado nomas era para serializar las primeras cosas, no le hagas caso
-        try{
+        try {
             ServerSocket s = new ServerSocket(7000);
-            for(;;){
+            for (;;) {
                 Socket cl = s.accept();
-                System.out.println("Conexión establecida desde"+cl.getInetAddress()+":"+cl.getPort());
+                System.out.println("Conexión establecida desde" + cl.getInetAddress() + ":" + cl.getPort());
                 //Aqui pues hace lo del envio xd
-                JFileChooser jf= new JFileChooser();
+                JFileChooser jf = new JFileChooser();
                 int r = jf.showOpenDialog(null);
-                if(r==JFileChooser.APPROVE_OPTION){
+                if (r == JFileChooser.APPROVE_OPTION) {
                     File f = jf.getSelectedFile();//Manejador
                     String archivo = f.getAbsolutePath(); //Dirección
                     String nombre = f.getName(); //Nombre
-                    long tam= f.length();  //Tamaño
+                    long tam = f.length();  //Tamaño 
                     DataOutputStream dos = new DataOutputStream(cl.getOutputStream());
-                    DataInputStream dis= new DataInputStream(new FileInputStream(archivo));
+                    DataInputStream dis = new DataInputStream(new FileInputStream(archivo));
                     dos.writeUTF(nombre);
-                    dos.flush();               
+                    dos.flush();
                     dos.writeLong(tam);
                     dos.flush();
                     byte[] b = new byte[1024];
                     long enviados = 0;
                     int porcentaje, n;
-                    while(enviados < tam){
+                    while (enviados < tam) {
                         n = dis.read(b);
-                        dos.write(b,0,n);
+                        dos.write(b, 0, n);
                         dos.flush();
-                        enviados = enviados+n;
-                        porcentaje = (int)(enviados*100/tam);
-                        System.out.print("Enviado: "+porcentaje+"%\r");
+                        enviados = enviados + n;
+                        porcentaje = (int) (enviados * 100 / tam);
+                        System.out.print("Enviado: " + porcentaje + "%\r");
                     }//While
                     System.out.print("\n\n Archivo enviado");
                     dos.close();
                     dis.close();
-                    cl.close(); 
+                    cl.close();
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
 }
