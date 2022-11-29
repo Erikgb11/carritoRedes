@@ -22,41 +22,11 @@ public class clientecarrito {
             System.out.printf("\n\n Escriba el puerto:\n");
             int pto= Integer.parseInt(br.readLine());
             Socket cl = new Socket(host, pto);
+            //ArrayList <producto> lista2; //csmbiar
+            ArrayList <producto> lista2=new ArrayList <producto>();
             System.out.println("\n\nHola este es el catalogo\n:");
             
-            //Aqui puse el menu pues porque xd no
-            Scanner sn = new Scanner(System.in);
-            boolean salir = false;
-            int opcion; //Guardaremos la opcion del usuario
-            while(!salir){
-                System.out.println("1. Agregar producto");
-                System.out.println("2. Eliminar producto");
-                System.out.println("3. Modificar producto");
-                System.out.println("4. Salir");
-                System.out.println("Escribe una de las opciones");
-                opcion = sn.nextInt();
-                switch(opcion){
-                    case 1:
-                        System.out.println("Has seleccionado la opcion 1");
-                        //Aqui pues va lo de agregar xd
-                        break;
-                    case 2:
-                        System.out.println("Has seleccionado la opcion 2");
-                        //Aqui va lo de eliminar xd
-                        break;
-                    case 3:
-                        System.out.println("Has seleccionado la opcion 3");
-                        //Aqui va lo de modificar xd
-                        break;
-                    case 4:
-                        salir=true;
-                        //pues aqui se sale no sea pendejo
-                        break;
-                    default:
-                        System.out.println("Solo números entre 1 y 4");
-                        //Aqui pues te dice que no sea pendejo 
-                }
-            }
+
             //Aqui acaba el menu jsjs
             //Aqui recibe pero pues xd no jala
             DataInputStream dis= new DataInputStream(cl.getInputStream());
@@ -64,7 +34,6 @@ public class clientecarrito {
             String nombre = dis.readUTF();
             System.out.println("Recibimos el archivo:"+nombre);
             ObjectInputStream entrada=new ObjectInputStream(new FileInputStream(nombre));
-            ArrayList <producto> lista2;
             lista2=(ArrayList <producto>)entrada.readObject();
             for(int i=0;i<lista2.size();i++){
                 lista2.get(i).imprimir();
