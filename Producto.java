@@ -5,12 +5,9 @@
  */
 package com.ipn.mx.practica1aplicaciones;
 
-<<<<<<< HEAD
 import javax.swing.*;
 import java.net.*;
 import java.util.*;
-=======
->>>>>>> df9c40d09cc2c5d10fa34133d6a6ed5bcdabaccf
 import java.io.*;
 
 /**
