@@ -16,6 +16,19 @@ import java.util.*;
 public class ClienteCarrito {
 
     public static void main(String[] args) {
+        Producto camisa=new Producto("camisa",172,"Una camisa chida chida",10);
+        Producto pantalon=new Producto("pantalon",150,"Para toda ocasion",10);
+        Producto sueter=new Producto("sueter",250,"Para el frio",10);
+        ArrayList <Producto> lista=new ArrayList <Producto>();
+        lista.add(camisa);
+        lista.add(sueter);
+        lista.add(pantalon);
+        ArrayList <Integer> cantidades=new ArrayList <Integer>();
+        cantidades.add(2);
+        cantidades.add(1);
+        cantidades.add(5);
+        GeneratePDFFileIText generatePDFFileIText = new GeneratePDFFileIText();
+        generatePDFFileIText.createPDF(new File("src\\\\main\\\\java\\\\com\\\\ipn\\\\mx\\\\practica1aplicaciones\\\\GeneratePDFFileIText.pdf"),lista,cantidades);
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             System.out.printf("\nEscriba la dirección del servidor:\n");
