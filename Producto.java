@@ -5,28 +5,34 @@
  */
 package com.ipn.mx.practica1aplicaciones;
 
+<<<<<<< HEAD
 import javax.swing.*;
 import java.net.*;
 import java.util.*;
+=======
+>>>>>>> df9c40d09cc2c5d10fa34133d6a6ed5bcdabaccf
 import java.io.*;
+
 /**
  *
  * @author erikg
  */
-public class Producto implements Serializable{
-	private String nombre;
-	private float precio;
-	private String descripcion;
-	private int existencia;
+public class Producto implements Serializable {
+
+    private String nombre;  
+    private float precio;
+    private String descripcion;
+    private int existencia;
 
     public Producto(String string, float d, String string0, int i) {
-        nombre=string;
-        precio=d;
-        descripcion=string0;
-        existencia=i;
+        nombre = string;
+        precio = d;
+        descripcion = string0;
+        existencia = i;
     }
-    public void imprimir(){
-        System.out.println(getNombre()+getPrecio()+getDescripcion()+getExistencia());
+
+    public void imprimir() {
+        System.out.println(getNombre() + getPrecio() + getDescripcion() + getExistencia());
     }
 
     /**
@@ -84,14 +90,13 @@ public class Producto implements Serializable{
     public void setExistencia(int existencia) {
         this.existencia = existencia;
     }
-    
-    public void disminuirstock(){
-        if(existencia>=0){
-            existencia=existencia-1;
-        }else{
-            System.out.println("No se puede comprar este Producto");
-        }    
-    }
-    
-}
 
+    public void disminuirstock() {
+        if (existencia >= 0) {
+            existencia = existencia - 1;
+        } else {
+            System.out.println("No se puede comprar este Producto");
+        }
+    }
+
+}
