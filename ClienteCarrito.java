@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ipn.mx.practica1aplicaciones;
+// package com.ipn.mx.practica1aplicaciones;
 
 import java.net.*;
 import java.io.*;
@@ -22,6 +22,7 @@ public class ClienteCarrito {
       System.out.printf("Escriba el puerto:\n");
       int pto= Integer.parseInt(br.readLine());
       Socket cl = new Socket(host, pto);
+      ArrayList<Producto> lista2 = new ArrayList<Producto>();
       System.out.println("Hola este es el catalogo\n:");
           
       //Aqui puse el menu pues porque xd no

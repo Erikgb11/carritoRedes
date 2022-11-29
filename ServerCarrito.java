@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ipn.mx.practica1aplicaciones;
+// package com.ipn.mx.practica1aplicaciones;
 
 import java.io.*;
 import java.net.*;
@@ -75,8 +75,10 @@ public class ServerCarrito {
         dos.close();
         dis.close();
         cl.close(); 
-    } catch (Exception e) {
-        e.printStackTrace();
+      }
     }
+  }catch (Exception e) {
+    e.printStackTrace();
   }
+ }
 }
