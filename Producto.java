@@ -29,7 +29,10 @@ public class Producto implements Serializable {
     }
 
     public void imprimir() {
-        System.out.println(getNombre() + getPrecio() + getDescripcion() + getExistencia());
+        System.out.println(getNombre() +" "+getPrecio() +" "+ getDescripcion() +" "+ getExistencia());
+    }
+    public void imprimircarr(int cant){
+        System.out.println(getNombre() +" "+getPrecio() +" "+ getDescripcion() +" "+ cant);
     }
 
     /**
