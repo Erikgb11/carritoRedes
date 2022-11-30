@@ -68,7 +68,7 @@ public class ClienteCarrito {
                 System.out.println("1. Comprar producto");
                 System.out.println("2. Eliminar producto");
                 System.out.println("3. Modificar producto");
-                System.out.println("5. Salir");
+                System.out.println("4. Salir");
                 System.out.println("Escribe una de las opciones");
                 opcion = sn.nextInt();
                 switch (opcion) {
