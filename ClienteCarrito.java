@@ -15,19 +15,6 @@ import java.util.*;
  */
 public class ClienteCarrito {
   public static void main(String[] args) {
-    Producto camisa=new Producto("camisa",172,"Una camisa chida chida",10);
-    Producto pantalon=new Producto("pantalon",150,"Para toda ocasion",10);
-    Producto sueter=new Producto("sueter",250,"Para el frio",10);
-    ArrayList <Producto> lista=new ArrayList <Producto>();
-    lista.add(camisa);
-    lista.add(sueter);
-    lista.add(pantalon);
-    ArrayList <Integer> cantidades=new ArrayList <Integer>();
-    cantidades.add(2);
-    cantidades.add(1);
-    cantidades.add(5);
-    GeneratePDFFileIText generatePDFFileIText = new GeneratePDFFileIText();
-    generatePDFFileIText.createPDF(new File("src\\\\main\\\\java\\\\com\\\\ipn\\\\mx\\\\practica1aplicaciones\\\\GeneratePDFFileIText.pdf"),lista,cantidades);
     try {
       BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
       System.out.printf("\nEscriba la dirección del servidor:\n");
@@ -113,7 +100,35 @@ public class ClienteCarrito {
             for (int i = 0; i < lista2.size(); i++) {
               if (nombrem.equals(lista2.get(i).getNombre())) {
                 System.out.println("\nQue desea modificar:\n");
-                
+                System.out.println("1. Nombre");
+        	System.out.println("2. Precio");
+	        System.out.println("3. Descripcion");
+	        System.out.println("4. Existencia");
+	        System.out.println("5. Ninguna, quiero volver al menu");
+        	System.out.println("Escribe una de las opciones");
+	        int opcion1 = sn.nextInt();
+        	switch (opcion1) {
+			case 1:
+				System.out.printf("\nEscriba el nombre nuevo:\n");
+		                String nombrenew = br.readLine();
+				lista2.get(i).setNombre(nombrenew);
+				break;
+			case 2:
+				System.out.printf("\n\n Escriba el precio nuevo:\n");
+		                float precionew = Float.parseFloat(br.readLine());
+				lista2.get(i).setPrecio(precionew);
+				break;
+			case 3:
+            			System.out.printf("\nEscriba la descripcion nueva:\n");
+          		        String desnew = br.readLine();
+				lista2.get(i).setDescripcion(desnew);
+				break;
+			case 4:
+           			System.out.printf("\nEscriba la cantidad de productos nueva:\n");
+           			int cannew = Integer.parseInt(br.readLine());
+				lista2.get(i).setExistencia(cannew);
+				break;
+		}
               }
             }
             for(int i=0;i<lista2.size();i++){
@@ -121,15 +136,32 @@ public class ClienteCarrito {
             }
             break;
 
-          case 4:
-            System.out.println("\nIngrese el nombre del producto a comprar:\n");
-            String nombrec = br.readLine();
-            for (int i = 0; i < lista2.size(); i++) {
-              if (nombrec.equals(lista2.get(i).getNombre())) {
-                lista2.get(i).disminuirstock(1);
-              }
-            }
-            break;
+            case 4:
+                int comprar=1;
+                ArrayList <Producto> lista=new ArrayList <Producto>();
+                ArrayList <Integer> cantidades=new ArrayList <Integer>();
+                do{
+	            System.out.println("\nIngrese el nombre del producto a comprar:\n");
+        	    String nombrec = br.readLine();
+	            System.out.printf("\nEscriba la cantidad de productos\n");
+                    int cantidadcom = Integer.parseInt(br.readLine());	
+            	    for (int i = 0; i < lista2.size(); i++) {
+              		if (nombrec.equals(lista2.get(i).getNombre())) {
+                            lista.add(lista2.get(i));
+                            if(cantidadcom<=lista2.get(i).getExistencia()){
+                                lista2.get(i).disminuirstock(cantidadcom);
+                                cantidades.add(cantidadcom);
+                            }else{
+                                System.out.println("\nLo siento no tenemos tantas\n");
+                            }
+                        }
+	            }
+                    System.out.println("\nDesea comprar mas? 1:si 2:no :\n");
+                    comprar = sn.nextInt();
+                }while(comprar<=1);	
+                GeneratePDFFileIText generatePDFFileIText = new GeneratePDFFileIText();
+                generatePDFFileIText.createPDF(new File("src\\\\main\\\\java\\\\com\\\\ipn\\\\mx\\\\practica1aplicaciones\\\\GeneratePDFFileIText.pdf"),lista,cantidades);
+                break;
 
           case 5:
             salir = true;
