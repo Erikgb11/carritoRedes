@@ -56,8 +56,6 @@ public class ClienteCarrito {
                 lista2.get(i).imprimir();
             }
             entrada.close();
-            dis.close();
-            cl.close();
 
             //Aqui puse el menu pues porque xd no
             Scanner sn = new Scanner(System.in);
@@ -160,7 +158,7 @@ public class ClienteCarrito {
             }
 
             try {
-                ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("src/main/java/com/ipn/mx/practica1aplicaciones/pruebas/catalogo.txt"));
+                ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("src\\\\main\\\\java\\\\com\\\\ipn\\\\mx\\\\practica1aplicaciones\\\\catalogo.txt"));
                 System.out.println(salida);
                 salida.writeObject(lista);
                 salida.close();
@@ -192,6 +190,8 @@ public class ClienteCarrito {
             System.out.println("Archivo enviado");
             disR.close();
             dosR.close();
+            dis.close();
+            cl.close();
             
             GeneratePDFFileIText generatePDFFileIText = new GeneratePDFFileIText();
             generatePDFFileIText.createPDF(new File("src\\\\main\\\\java\\\\com\\\\ipn\\\\mx\\\\practica1aplicaciones\\\\GeneratePDFFileIText.pdf"), lista, cantidades);

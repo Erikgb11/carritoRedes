@@ -17,28 +17,28 @@ import java.util.*;
  */
 public class ServerCarrito {
   public static void main(String[] args) {
-//        Producto camisa=new Producto("camisa",172,"Una camisa chida chida",10);
-//        Producto pantalon=new Producto("pantalon",150,"Para toda ocasion",10);
-//        Producto sueter=new Producto("sueter",250,"Para el frio",10);
-//        camisa.imprimir();
-//        pantalon.imprimir();
-//        sueter.imprimir();
-//        ArrayList <Producto> lista=new ArrayList <Producto>();
-//        ArrayList <Producto> lista2;
-//        lista.add(camisa);
-//        lista.add(sueter);
-//        lista.add(pantalon);
-//        
-//        try {
-//            ObjectOutputStream salida=new ObjectOutputStream(new FileOutputStream("src\\main\\java\\com\\ipn\\mx\\practica1aplicaciones\\catalogo.txt"));
-//            System.out.println(salida);
-//            salida.writeObject(lista);
-//            salida.close();
-//            ObjectInputStream entrada=new ObjectInputStream(new FileInputStream("src\\main\\java\\com\\ipn\\mx\\practica1aplicaciones\\catalogo.txt"));
-//            lista2=(ArrayList <Producto>)entrada.readObject();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        Producto camisa=new Producto("camisa",172,"Una camisa chida chida",10);
+        Producto pantalon=new Producto("pantalon",150,"Para toda ocasion",10);
+        Producto sueter=new Producto("sueter",250,"Para el frio",10);
+        camisa.imprimir();
+        pantalon.imprimir();
+        sueter.imprimir();
+        ArrayList <Producto> lista=new ArrayList <Producto>();
+        ArrayList <Producto> lista2;
+        lista.add(camisa);
+        lista.add(sueter);
+        lista.add(pantalon);
+        
+        try {
+            ObjectOutputStream salida=new ObjectOutputStream(new FileOutputStream("/home/macpolloz/catalogo.txt"));
+            System.out.println(salida);
+            salida.writeObject(lista);
+            salida.close();
+            ObjectInputStream entrada=new ObjectInputStream(new FileInputStream("/home/macpolloz/catalogo.txt"));
+            lista2=(ArrayList <Producto>)entrada.readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 //todo lo que esta comentado nomas era para serializar las primeras cosas, no le hagas caso
   try{
@@ -80,10 +80,11 @@ public class ServerCarrito {
           dis.close();
         }
       }    
-      dos.close();
       
-      byte[] b = new byte[1024];
-      String nombre = disR.readUTF();
+//        System.out.println(disR.read());
+      String nombre;
+      if ((nombre = disR.readUTF()) != null){
+          byte[] b = new byte[1024];
       System.out.println("Se recibio de nuevo el " + nombre + " actualizado");
       long tam = disR.readLong();
       DataOutputStream dosR = new DataOutputStream(new FileOutputStream(nombre));
@@ -97,8 +98,14 @@ public class ServerCarrito {
           recibidos = recibidos + n;
       }
       System.out.println("Archivo recibido");
-      disR.close();
       dosR.close();
+      }
+          
+      
+      
+      disR.close();
+      
+      dos.close();
       cl.close(); 
     }
   }catch (Exception e) {
