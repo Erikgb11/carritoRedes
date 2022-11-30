@@ -50,10 +50,9 @@ public class GeneratePDFFileIText {
      * learn      * to use this library.      * Creamos un documento PDF con
      * iText usando diferentes elementos para aprender      * a usar esta
      * librería.      * @param pdfNewFile  <code>String</code>      * pdf File we
-     * are going to write.      * Fichero pdf en el que vamos a escribir. 
-     
+     * are going to write.      * Fichero pdf en el que vamos a escribir.      
      */
-    public void createPDF(File pdfNewFile, ArrayList<Producto> chi,ArrayList<Integer> c) {
+    public void createPDF(File pdfNewFile, ArrayList<Producto> chi, ArrayList<Integer> c) {
         // We create the document and set the file name.        
         // Creamos el documento e indicamos el nombre del fichero.
         try {
@@ -83,7 +82,7 @@ public class GeneratePDFFileIText {
             chapter.setNumberDepth(0);
             chapter.add(new Paragraph("Gracias por su compra vuelva pronto", paragraphFont));
             chapter.add(new Paragraph("Su compra es de: ", paragraphFont));
-            
+
 // How to use PdfPTable
 // Utilización de PdfPTable
 // We use various elements to add title and subtitle
@@ -93,7 +92,7 @@ public class GeneratePDFFileIText {
             Paragraph paragraph = new Paragraph("", subcategoryFont);
             Section paragraphMore = chapTitle.addSection(paragraph);
             Integer numColumns = 4;
-            Integer numRows=chi.size()+3;//editarlo
+            Integer numRows = chi.size() + 3;//editarlo
 // We create the table (Creamos la tabla).
             PdfPTable table = new PdfPTable(numColumns);
 // Now we fill the PDF table 
@@ -113,29 +112,31 @@ public class GeneratePDFFileIText {
             columnHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(columnHeader);
             table.setHeaderRows(1);
-            float ch=0;
+            float ch = 0;
 // Fill table rows (rellenamos las filas de la tabla).                
             for (int row = 0; row < chi.size(); row++) {
-                table.addCell(row+"");
+                table.addCell(row + "");
                 table.addCell(chi.get(row).getNombre());
-                table.addCell(c.get(row)+"");
-                table.addCell(chi.get(row).getPrecio()+"");
-                ch=c.get(row).floatValue()*chi.get(row).getPrecio()+ch;
+                table.addCell(c.get(row) + "");
+                table.addCell(chi.get(row).getPrecio() + "");
+                ch = c.get(row).floatValue() * chi.get(row).getPrecio() + ch;
             }
             table.addCell("");
             table.addCell("");
             table.addCell("Subtotal");
-            table.addCell(ch+"");
+            table.addCell(ch + "");
             table.addCell("");
             table.addCell("");
             table.addCell("IVA 16%");
-            float iva=(ch*16)/100;
-            table.addCell(iva+"");
+            float iva = (ch * 16) / 100;
+            table.addCell(iva + "");
             table.addCell("");
             table.addCell("");
             table.addCell("Total");
-            float total=iva+ch;
-            table.addCell(total+"");
+            float total = iva + ch;
+            table.addCell(total + "");
+            Date date = new Date();
+            chapter.add(new Paragraph("Compra elaborada en " + date, paragraphFont));
 // We add the table (Añadimos la tabla)
             document.add(chapter);
             paragraphMore.add(table);

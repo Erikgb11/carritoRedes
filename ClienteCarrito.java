@@ -74,7 +74,7 @@ public class ClienteCarrito {
                 switch (opcion) {
                     case 1:
                         int comprar = 1;
-                        int conc=0;
+                        int conc = 0;
                         do {
                             System.out.println("\nIngrese el nombre del producto a comprar:\n");
                             String nombrec = br.readLine();
@@ -82,18 +82,18 @@ public class ClienteCarrito {
                             int cantidadcom = Integer.parseInt(br.readLine());
                             for (int i = 0; i < lista2.size(); i++) {
                                 if (nombrec.equals(lista2.get(i).getNombre())) {
-                                    conc=1;
+                                    conc = 1;
                                     if (cantidadcom <= lista2.get(i).getExistencia()) {
                                         lista.add(lista2.get(i));
                                         lista2.get(i).disminuirstock(cantidadcom);
                                         cantidades.add(cantidadcom);
-                                        
+
                                     } else {
                                         System.out.println("\nLo siento no tenemos tantas\n");
                                     }
                                 }
                             }
-                            if(conc!=1){
+                            if (conc != 1) {
                                 System.out.println("\nLo siento no tenemos ese producto a la venta\n");
                             }
                             System.out.println("\nSu carrito esta de la siguiente forma");
@@ -106,16 +106,17 @@ public class ClienteCarrito {
                         break;
 
                     case 2:
-                        int cone=0;
+                        int cone = 0;
                         System.out.println("\nIngrese el nombre del producto a eliminar:\n");
                         String nombree = br.readLine();
                         for (int i = 0; i < lista.size(); i++) {
                             if (nombree.equals(lista.get(i).getNombre())) {
                                 lista.remove(i);
-                                cone=1;
-                            } 
+                                lista2.get(i).setExistencia(lista2.get(i).getExistencia()+cantidades.get(i));
+                                cone = 1;
+                            }
                         }
-                        if(cone!=1){
+                        if (cone != 1) {
                             System.out.println("\nNo existe ese producto en su carrito, lo siento\n");
                         }
                         System.out.println("\nSu carrito esta de la siguiente forma");
@@ -125,19 +126,20 @@ public class ClienteCarrito {
                         break;
 
                     case 3:
-                        int nuevacan=0;
-                        int conm=0;
+                        int nuevacan = 0;
+                        int conm = 0;
                         System.out.println("\nIngrese el nombre del producto a modificar:\n");
                         String nombrem = br.readLine();
                         for (int i = 0; i < lista.size(); i++) {
                             if (nombrem.equals(lista.get(i).getNombre())) {
                                 System.out.println("\n Ingrese la cantidad de cosas a comprar");
                                 nuevacan = sn.nextInt();
-                                cantidades.set(i,nuevacan);
-                                cone=1;
-                            } 
+                                lista2.get(i).setExistencia(lista2.get(i).getExistencia()+cantidades.get(i)-nuevacan);
+                                cantidades.set(i, nuevacan);
+                                cone = 1;
+                            }
                         }
-                        if(conm!=1){
+                        if (conm != 1) {
                             System.out.println("\nNo existe ese producto en su carrito, lo siento\n");
                         }
                         System.out.println("\nSu carrito esta de la siguiente forma");
@@ -154,6 +156,15 @@ public class ClienteCarrito {
                         System.out.println("Solo números entre 1 y 4");
                     //Aqui pues te dice que no sea pendejo 
                 }
+            }
+
+            try {
+                ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("src/main/java/com/ipn/mx/practica1aplicaciones/pruebas/catalogo.txt"));
+                System.out.println(salida);
+                salida.writeObject(lista);
+                salida.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             GeneratePDFFileIText generatePDFFileIText = new GeneratePDFFileIText();
             generatePDFFileIText.createPDF(new File("src\\\\main\\\\java\\\\com\\\\ipn\\\\mx\\\\practica1aplicaciones\\\\GeneratePDFFileIText.pdf"), lista, cantidades);
