@@ -37,32 +37,36 @@ public class ClienteCarrito {
       Socket cl = new Socket(host, pto);
       ArrayList<Producto> lista2 = new ArrayList<Producto>();
       System.out.println("\n\nHola este es el catalogo\n:");
-      //Aqui recibe pero pues xd no jala
+      //Aqui recibe pero pues xd si jala
+      //De nuevo, el for es para recibir los 4 archivos
       DataInputStream dis = new DataInputStream(cl.getInputStream());
-      byte[] b = new byte[1024];
-      String nombre = dis.readUTF();
-      System.out.println("Recibimos el archivo:" + nombre);
-      long tam = dis.readLong();
-      DataOutputStream dos = new DataOutputStream(new FileOutputStream(nombre));
-
-      long recibidos = 0;
-      int n, porcentaje;
-
-      while (recibidos < tam){
-        n = dis.read(b);
-        dos.write(b, 0, n);
-        dos.flush();
-        recibidos = recibidos + n;
-        porcentaje = (int)(recibidos*100/tam);
+      for (int i = 0; i < 4; i++){
+        byte[] b = new byte[1024];
+        String nombre = dis.readUTF();
+        System.out.println("Recibimos el archivo:" + nombre);
+        long tam = dis.readLong();
+        DataOutputStream dos = new DataOutputStream(new FileOutputStream(nombre));
+  
+        long recibidos = 0;
+        int n, porcentaje;
+  
+        while (recibidos < tam){
+          n = dis.read(b);
+          dos.write(b, 0, n);
+          dos.flush();
+          recibidos = recibidos + n;
+          porcentaje = (int)(recibidos*100/tam);
+        }
         System.out.println("Archivo recibido");
+        dos.close();
       }
-      ObjectInputStream entrada=new ObjectInputStream(new FileInputStream(nombre));
+      
+      ObjectInputStream entrada=new ObjectInputStream(new FileInputStream("catalogo.txt"));
       lista2 = (ArrayList) entrada.readObject();
       for(int i=0;i<lista2.size();i++){
           lista2.get(i).imprimir();
        }
       entrada.close();
-      dos.close();
       dis.close();
       cl.close();
       
