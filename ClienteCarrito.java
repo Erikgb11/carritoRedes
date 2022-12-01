@@ -28,6 +28,7 @@ public class ClienteCarrito {
             //Aqui recibe pero pues xd si jala
             //De nuevo, el for es para recibir los 4 archivos
             DataInputStream dis = new DataInputStream(cl.getInputStream());
+            DataOutputStream dosR = new DataOutputStream(cl.getOutputStream());
             for (int i = 0; i < 4; i++) {
                 byte[] b = new byte[1024];
                 String nombre = dis.readUTF();
@@ -166,6 +167,32 @@ public class ClienteCarrito {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            
+            File f2 = new File("catalogo.txt");
+            String archivo2 = f2.getAbsolutePath();
+            String nombre2 = f2.getName();
+            long tam2 = f2.length();
+            
+            DataInputStream disR = new DataInputStream(new FileInputStream(archivo2));
+            dosR.writeUTF(nombre2);
+            dosR.flush();
+            dosR.writeLong(tam2);
+            dosR.flush();
+            
+            byte[] b2 = new byte[1024];
+            long enviados2 = 0;
+            int n2;
+            
+            while (enviados2 < tam2){
+                n2 = disR.read(b2);
+                dosR.write(b2, 0, n2);
+                dosR.flush();
+                enviados2 = enviados2 + n2;
+            }
+            System.out.println("Archivo enviado");
+            disR.close();
+            dosR.close();
+            
             GeneratePDFFileIText generatePDFFileIText = new GeneratePDFFileIText();
             generatePDFFileIText.createPDF(new File("src\\\\main\\\\java\\\\com\\\\ipn\\\\mx\\\\practica1aplicaciones\\\\GeneratePDFFileIText.pdf"), lista, cantidades);
             //Aqui acaba el menu jsjs

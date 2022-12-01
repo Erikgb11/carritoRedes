@@ -51,6 +51,7 @@ public class ServerCarrito {
       //Aqui pues hace lo del envio xd
       //El for es para enviar los 4 archivos, el catalogo y 3 imagenes
       DataOutputStream dos = new DataOutputStream(cl.getOutputStream());
+      DataInputStream disR = new DataInputStream(cl.getInputStream());
       for (int i = 0; i < 4; i++){
         JFileChooser jf = new JFileChooser();
         int r = jf.showOpenDialog(null);
@@ -80,6 +81,24 @@ public class ServerCarrito {
         }
       }    
       dos.close();
+      
+      byte[] b = new byte[1024];
+      String nombre = disR.readUTF();
+      System.out.println("Se recibio de nuevo el " + nombre + " actualizado");
+      long tam = disR.readLong();
+      DataOutputStream dosR = new DataOutputStream(new FileOutputStream(nombre));
+      long recibidos = 0;
+      int n;
+      
+      while(recibidos < tam){
+          n = disR.read(b);
+          dosR.write(b, 0, n);
+          dosR.flush();
+          recibidos = recibidos + n;
+      }
+      System.out.println("Archivo recibido");
+      disR.close();
+      dosR.close();
       cl.close(); 
     }
   }catch (Exception e) {
